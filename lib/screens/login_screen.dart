@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: const Text('Login', style: TextStyle(color: Colors.white))),
+        title: const Center(child: Text('Login', style: TextStyle(color: Colors.white))),
         backgroundColor: const Color.fromARGB(255, 20, 3, 176),
       ),
       backgroundColor: const Color.fromARGB(255, 20, 3, 176),
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
               ),
               const SizedBox(height: 20),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
@@ -92,17 +92,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           );
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Email ou senha incorretos')),
+                            const SnackBar(content: Text('Email ou senha incorretos')),
                           );
                         }
                       } catch (e) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Erro ao realizar o login')),
+                          const SnackBar(content: Text('Erro ao realizar o login')),
                         );
                       }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Preencha todos os campos corretamente')),
+                        const SnackBar(content: Text('Preencha todos os campos corretamente')),
                       );
                     }
                   },
@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {

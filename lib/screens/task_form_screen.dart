@@ -55,10 +55,12 @@ class TaskFormScreenState extends State<TaskFormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         backgroundColor: const Color.fromARGB(255, 17, 9, 174), // Fundo azul
         title: Center(
           child: Text(
             widget.taskId == null ? 'Adicionar Tarefa' : 'Editar Tarefa',
-            style: TextStyle(color: Colors.white), // Texto em branco
+            style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)), // Texto em branco
+          
           ),
         ),
       ),
@@ -96,24 +98,38 @@ class TaskFormScreenState extends State<TaskFormScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 16.0),
-                TextFormField(
-                  controller: _dateController,
-                  decoration: const InputDecoration(
-                    labelText: 'Data (YYYY-MM-DD)',
-                    border: UnderlineInputBorder(),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor, insira uma data';
-                    }
-                    final datePattern = RegExp(r'^\d{4}-\d{2}-\d{2}$');
-                    if (!datePattern.hasMatch(value)) {
-                      return 'Formato de data inválido. Use YYYY-MM-DD.';
-                    }
-                    return null;
-                  },
-                ),
+               const SizedBox(height: 16.0),
+TextFormField(
+  controller: _dateController,
+  decoration: const InputDecoration(
+    labelText: 'Data (DD/MM/AAAA)',
+    border: UnderlineInputBorder(),
+  ),
+  validator: (value) {
+    if (value == null || value.isEmpty) {
+      return 'Por favor, insira uma data';
+    }
+    final datePattern = RegExp(r'^\d{2}/\d{2}/\d{4}$');
+    if (!datePattern.hasMatch(value)) {
+      return 'Formato de data inválido. Use DD/MM/AAAA.';
+    }
+    // Verifique se a data é válida
+    final parts = value.split('/');
+    final day = int.parse(parts[0]);
+    final month = int.parse(parts[1]);
+    final year = int.parse(parts[2]);
+
+    final isValidDate = (month >= 1 && month <= 12) &&
+        (day >= 1 && day <= (DateTime(year, month + 1, 0).day));
+
+    if (!isValidDate) {
+      return 'Data inválida';
+    }
+
+    return null;
+  },
+),
+
                 const SizedBox(height: 16.0),
                 TextFormField(
                   controller: _timeController,

@@ -25,7 +25,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
     if (_formKey.currentState?.validate() ?? false) {
       if (_senhaController.text != _repitaSenhaController.text) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('As senhas não coincidem.')),
+          const SnackBar(content: Text('As senhas não coincidem.')),
         );
         return;
       }
@@ -38,7 +38,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
       );
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Cadastro realizado com sucesso!')),
+        const SnackBar(content: Text('Cadastro realizado com sucesso!')),
       );
 
       Navigator.pushReplacementNamed(context, '/login');

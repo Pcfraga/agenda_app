@@ -3,10 +3,10 @@ import 'package:agenda_app/database/database_helper.dart';
 
 class TarefasScreen extends StatefulWidget {
   const TarefasScreen({
-    Key? key,
+    super.key,
     required this.userId,
     required this.databaseHelper,
-  }) : super(key: key);
+  });
 
   final int userId;
   final DatabaseHelper databaseHelper;
@@ -55,8 +55,8 @@ class _TarefasScreenState extends State<TarefasScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Confirmar Exclusão'),
-          content: Text('Você tem certeza que deseja excluir esta tarefa?'),
+          title: const Text('Confirmar Exclusão'),
+          content: const Text('Você tem certeza que deseja excluir esta tarefa?'),
           actions: <Widget>[
             TextButton(
               child: const Text('Cancelar'),
@@ -80,16 +80,16 @@ class _TarefasScreenState extends State<TarefasScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: const Text(
-            'Tarefas',
-            style: TextStyle(color: Colors.white), // Texto em branco
-          ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 14, 4, 115), // Fundo da AppBar
-        iconTheme: const IconThemeData(color: Colors.white),
+  appBar: AppBar(
+    title: const Center(
+      child: Text(
+        'Tarefas',
+        style: TextStyle(color: Colors.white), // Texto em branco
       ),
+    ),
+    backgroundColor: const Color.fromARGB(255, 14, 4, 115), // Fundo da AppBar
+    iconTheme: const IconThemeData(color: Colors.white),
+  ),
       body: Container(
         color: const Color.fromARGB(255, 19, 5, 144),
         padding: const EdgeInsets.all(16.0),
